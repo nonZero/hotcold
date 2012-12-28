@@ -71,6 +71,7 @@ gotcha!
 """
 x = int(raw_input("Player 1, Choose X Coordinate: "))
 y = int(raw_input("Player 1, Choose Y Coordinate: "))
+
 for i in range(100):
     print
     
@@ -81,24 +82,30 @@ newdistance = 0
 count = 0
 
 while True:
+    
     if player2x == x and player2y == y:
         print "Gotcha!!! It only took me, %d tries." %count
         break
+    
     player2 = raw_input("Player 2, Please choose (n s e w): ")
+    assert player2 in ["n", "s", "e", "w"], "You idiot, n s e w ONLY"
+    
     count += 1
-    if player2 != "w" and player2 != "e" and player2 != "n" and player2 != "s":
-        print "You idiot, n s e w ONLY"
+    
     if player2 == "n":
         player2y += 1
-    elif player2 == "s":
+    if player2 == "s":
         player2y -= 1
-    elif player2 == "w":
+    if player2 == "w":
         player2x -= 1
-    elif player2 == "e":
+    if player2 == "e":
         player2x += 1
+        
     newdistance = abs(player2x - x) + abs(player2y - y)
+    
     if newdistance < lastdistance:
         print "Warmer"
     else:
         print "Colder"
+
     lastdistance = newdistance    
